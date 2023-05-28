@@ -1,0 +1,4 @@
+2023-05-26 20:45:45 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]cliente SELECT * FROM producto"; se esperaba "COMMIT, CREATE, CALL, CHECKPOINT, COMMENT"
+Syntax error in SQL statement "[*]cliente SELECT * FROM producto"; expected "COMMIT, CREATE, CALL, CHECKPOINT, COMMENT"; SQL statement:
+cliente SELECT * FROM producto [42001-214]

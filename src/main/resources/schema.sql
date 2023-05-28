@@ -1,0 +1,10 @@
+CREATE TABLE cliente ( id_cliente INTEGER PRIMARY KEY AUTO_INCREMENT,
+nombre VARCHAR(150) NOT NULL,
+apellido VARCHAR(150) NOT NULL,
+documento INTEGER UNIQUE NOT NULL );
+
+CREATE TABLE producto ( id_producto INTEGER PRIMARY KEY AUTO_INCREMENT,
+descripcion VARCHAR(300),
+codigo VARCHAR(50) UNIQUE NOT NULL,
+stock INTEGER,
+precio_producto DOUBLE );
