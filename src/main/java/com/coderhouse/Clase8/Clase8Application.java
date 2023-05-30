@@ -30,7 +30,7 @@ public class Clase8Application implements CommandLineRunner {
 		System.out.println("Acceda al Server desde aqui..http://localhost:8888/h2-console/login.jsp?");
 
 // Creo un nuevo PRODUCTO pava
-		Producto mate = new Producto();
+		/*Producto mate = new Producto();
 		mate.setCodigo("jiiiiiiiiii");
 		mate.setDescripcion("Mate de calabazin");
 		mate.setPrecio_producto(1.5);
@@ -46,10 +46,10 @@ public class Clase8Application implements CommandLineRunner {
 
 		Optional<Producto> productoObtenido = this.productoRepository.findById(2);
 		if (productoObtenido.isPresent()) System.out.println(productoObtenido.get());
-		else System.out.println("Producto no encontrado ...");
+		else System.out.println("Producto no encontrado ...");*/
 
 //Creo CLIENTES nuevos
-		Cliente zonaSur = new Cliente();
+		/*Cliente zonaSur = new Cliente();
 		zonaSur.setApellido("Rodriguez");
 		zonaSur.setNombre("Casa la Estrella");
 		zonaSur.setDocumento(21123123);
@@ -65,7 +65,7 @@ public class Clase8Application implements CommandLineRunner {
 		zonaOeste.setApellido("Suarez");
 		zonaOeste.setNombre("Papu Repuestos ");
 		zonaOeste.setDocumento(33121123);
-		this.clienteRepository.save(zonaOeste);
+		this.clienteRepository.save(zonaOeste);+/
 
 
 		/*busquedas personalizadas
