@@ -7,10 +7,10 @@ import com.coderhouse.Clase8.service.FacturaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.awt.*;
+import java.util.List;
 
 @RestController
 //Mapeo el endPoint de Factura
@@ -38,4 +38,27 @@ public class FacturaControler {
         }
 
     }
-}
+    //Obtenga Factura por su ID
+    @GetMapping(path = "{id}")
+
+    //Busco Factura por Id de cliente
+    @GetMapping(path = "/obtengoFacturaPorClinteId/{id_cliente}")
+    public ResponseEntity<Object> obtengoFactiraporClienteId(@PathVariable int id_cliente) {
+        try {
+            List<FacturaDto> dato = facturaServcio.obtengoFacturaPorIdCliente(id_cliente);
+            return ResponseHandler.generateResponse(
+                    "Obtención de Factutra por Id Exitosa",
+                    HttpStatus.OK,
+                    dato);
+            }
+        catch(Exception e)
+            {
+             return ResponseHandler.generateResponse
+                    (e.getMessage(),
+                      HttpStatus.INTERNAL_SERVER_ERROR,
+                     null);
+            }
+
+        }
+
+    }

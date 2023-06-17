@@ -1,36 +1,19 @@
 package com.coderhouse.Clase8.model;
 
+import java.util.List;
+
 public class ConsultaFactura {
     private int cliente_id;
     //luego se añaden los otros detalles aqui
-    private String otra_prop;
+    private List<ConsultaProductoDetalle> lista_producto;
 
     //Agrego un constructor
 
-    public ConsultaFactura(int cliente_id, String otra_prop) {
+    public ConsultaFactura(int cliente_id,List<ConsultaProductoDetalle> lista_producto) {
         this.cliente_id = cliente_id;
-        this.otra_prop = otra_prop;
+        this.lista_producto = lista_producto;
     }
-    //Agrego Getter & Setters
-    public int getCliente_id() {
-        return cliente_id;
-    }
-    public void setCliente_id(int cliente_id) {
-        this.cliente_id = cliente_id;
-    }
-    public String getOtra_prop() {
-        return otra_prop;
-    }
-    public void setOtra_prop(String otra_prop) {
-        this.otra_prop = otra_prop;
-    }
-    //Agrego toString
 
-    @Override
-    public String toString() {
-        return "ConsultaFactura{" +
-                "cliente_id=" + cliente_id +
-                ", otra_prop='" + otra_prop + '\'' +
-                '}';
-    }
-}
+
+        }
+

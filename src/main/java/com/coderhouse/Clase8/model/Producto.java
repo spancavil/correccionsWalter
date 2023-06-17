@@ -2,14 +2,17 @@ package com.coderhouse.Clase8.model;
 
 import jakarta.persistence.*;
 
+import java.util.*;
 import java.util.Objects;
 
 @Entity
 @Table(name="producto")
-public class Producto {
+public class Producto implements List<Producto> {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private int id_producto;
+@Column(nullable = false)
+private String titulo;
 @Column(nullable = false)
 private String descripcion;
 @Column(nullable = false)
@@ -45,19 +48,15 @@ private double precio_producto;
     public void setPrecio_producto(double precio_producto)
     {this.precio_producto = precio_producto; }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
     //Agrego To string, Equals y Hashcode
 
-
-    @Override
-    public String toString() {
-        return "producto{" +
-                "id_producto=" + id_producto +
-                ", descripcion='" + descripcion + '\'' +
-                ", codigo='" + codigo + '\'' +
-                ", stock=" + stock +
-                ", precio_producto=" + precio_producto +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -69,9 +68,9 @@ private double precio_producto;
         if (id_producto != producto.id_producto) return false;
         if (stock != producto.stock) return false;
         if (Double.compare(producto.precio_producto, precio_producto) != 0) return false;
-        if (!Objects.equals(descripcion, producto.descripcion))
-            return false;
-        return Objects.equals(codigo, producto.codigo);
+        if (!titulo.equals(producto.titulo)) return false;
+        if (!descripcion.equals(producto.descripcion)) return false;
+        return codigo.equals(producto.codigo);
     }
 
     @Override
@@ -79,12 +78,25 @@ private double precio_producto;
         int result;
         long temp;
         result = id_producto;
-        result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
-        result = 31 * result + (codigo != null ? codigo.hashCode() : 0);
+        result = 31 * result + titulo.hashCode();
+        result = 31 * result + descripcion.hashCode();
+        result = 31 * result + codigo.hashCode();
         result = 31 * result + stock;
         temp = Double.doubleToLongBits(precio_producto);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "id_producto=" + id_producto +
+                ", titulo='" + titulo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", codigo='" + codigo + '\'' +
+                ", stock=" + stock +
+                ", precio_producto=" + precio_producto +
+                '}';
     }
 }
 

@@ -4,6 +4,7 @@ apellido VARCHAR(150) NOT NULL,
 documento INTEGER UNIQUE NOT NULL );
 
 CREATE TABLE producto ( id_producto INTEGER PRIMARY KEY AUTO_INCREMENT,
+titulo VARCHAR(300),
 descripcion VARCHAR(300),
 codigo VARCHAR(50) UNIQUE NOT NULL,
 stock INTEGER,

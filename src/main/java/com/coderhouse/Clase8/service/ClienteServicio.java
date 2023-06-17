@@ -22,4 +22,8 @@ public class ClienteServicio{
                 }else{ return cliente.get();
                 }
         }
+        public boolean clienteExiste (int id)throws Exception {
+        Optional<Cliente> cliente=clienteRepository.findById(id);
+        return cliente.isPresent();
+        }
 }

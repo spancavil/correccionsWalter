@@ -23,7 +23,7 @@ private ProductoServicio productoServicio;
 public ResponseEntity<Object> postProducto(@RequestBody Producto producto) {
         try {
             System.out.println(producto);
-            //LLamo al Servicio para guardar mi cliente
+            //LLamo al Servicio para guardar mi producto
              Producto productoSaved = productoServicio.postProducto(producto);
             return ResponseHandler.generateResponse(
                     "Producto creado correctamente",
