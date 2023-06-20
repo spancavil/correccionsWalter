@@ -19,11 +19,13 @@ public class FacturaServicio {
 
     public FacturaDto postFactura(ConsultaFactura consultaFactura) throws Exception {
         //Busco al cliente atravez de si ID
-        Cliente clinteExiste = clienteServicio.getCliente(consultaFactura.getclienteId());
+        Cliente clinteExiste = clienteServicio.getCliente(consultaFactura.cliente_id);
         //Buscamos los productos
-        List<Producto> productoList = productoServicio.getProductobyid(consultaFactura.getproductoLista());
+        List<Producto> productoList = productoServicio.getProductobyid(consultaFactura.lista_producto);
 
-    }
+    };
+
+
 
         //Creo un objeto Factura
         // Factura facturaCreada=new Factura();
@@ -48,8 +50,15 @@ public class FacturaServicio {
         //        facturaCreada.getTotal()
         // );
         //}
-        // public List<FacturaDto>obtengoFacturaPorIdCliente(int id_cliente) throws Exception{
-        //     System.out.println(id_cliente);
-        //    return FacturaRepository.obtengoFacturaPorIdCliente(id_cliente);
-        //}
+         public List<FacturaDto>obtengoFacturaPorIdCliente(int id_cliente) throws Exception{
+             System.out.println(id_cliente);
+            return FacturaRepository.obtengoFacturaPorIdCliente (id_cliente);
+        }
+        public Factura obtengoFacturaPorId (int id_factura) throws Exception {
+        Optional<Factura> facturaEncontrada=FacturaRepository.findById(id_factura);
+        if (facturaEncontrada.isEmpty()) {
+            throw new Exception("Factura no encontrada");
+        }
+        return facturaEncontrada.get();
+        }
     }

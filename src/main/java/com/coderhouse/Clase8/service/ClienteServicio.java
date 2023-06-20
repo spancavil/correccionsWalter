@@ -14,6 +14,22 @@ public class ClienteServicio{
     public Cliente postCliente(Cliente cliente)throws Exception{
             return clienteRepository.save(cliente);
         }
+    public Cliente putCliente(int id)throws Exception{
+        Optional<Cliente> cliente= clienteRepository.findById(id);
+        if(cliente.isEmpty()) {
+            return null;
+        }else
+            System.out.println(cliente);
+             boolean confirmaModi=false;
+            if(confirmaModi){
+                return clienteRepository.save(cliente)
+            }else
+            {return null;
+
+            }
+
+
+    }
 
     public Cliente getCliente(int id) throws Exception{
            Optional<Cliente> cliente= clienteRepository.findById(id);

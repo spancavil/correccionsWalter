@@ -38,6 +38,32 @@ public ResponseEntity<Object>postCliente(@RequestBody Cliente cliente) {
     }
 
 }
+//Modifico un Cliente creado
+    @PutMapping(path = {"id"})
+
+    public ResponseEntity<Object>putCliente(@PathVariable int id) {
+        try {
+            //LLamo al servicio para encontrar a ese cliente
+
+            //LLamo al Servicio para guardar mi cliente
+            Cliente clienteSaved = clienteServicio.putCliente(cliente);
+            return ResponseHandler.generateResponse(
+                    "Cliente actualizado correctamente",
+                    HttpStatus.OK,
+                    clienteSaved);
+
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse
+                    (e.getMessage(),
+                            HttpStatus.INTERNAL_SERVER_ERROR,
+                            null);
+
+
+        }
+
+    }
+
+
     //Solicito un  Cliente por Id
     @GetMapping(path = {"id"})
     public ResponseEntity<Object>GetCliente(@PathVariable int id) {

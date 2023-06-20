@@ -3,9 +3,9 @@ package com.coderhouse.Clase8.model;
 import java.util.List;
 
 public class ConsultaFactura {
-    private int cliente_id;
+    public int cliente_id;
     //luego se añaden los otros detalles aqui
-    private List<ConsultaProductoDetalle> lista_producto;
+    public List<ConsultaProductoDetalle> lista_producto;
 
     //Agrego un constructor
 
