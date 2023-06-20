@@ -1,11 +1,11 @@
 # Read Me
 _________
-    
 
-Hola, mi nombre es Walter Robaina, soy alumno de la _comisión 43915 del curso de JAVA INICIAL_
+
+👋 Hola, mi nombre es Walter Robaina, soy alumno de la _comisión 43915 del curso de JAVA INICIAL_
 y esta es la entrega de mi proyecto final.
 
-Es un ABM de Clientes y Productos ademas de permitir generar una Factura con los detalles de
+✨Es un ABM de Clientes y Productos ademas de permitir generar una Factura con los detalles de
 la compra realizada.
 
 ## Documentacion
@@ -40,6 +40,8 @@ _________________
 Puesdes iniciar la aplicacion desde
 
 __scr/main/java/com/coderhouse/Clase8/Clase8Aplication__
+
+* 📫 Pueden contactarme a mi casilla de correo robainawalter2006@hotmail.com
  >GRACIAS POR LEER ME !!!
 
 
