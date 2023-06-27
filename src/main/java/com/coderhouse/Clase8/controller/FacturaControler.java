@@ -3,6 +3,7 @@ package com.coderhouse.Clase8.controller;
 import com.coderhouse.Clase8.middleware.ResponseHandler;
 import com.coderhouse.Clase8.model.ConsultaFactura;
 import com.coderhouse.Clase8.model.Factura;
+import com.coderhouse.Clase8.model.FacturaConDetalleDto;
 import com.coderhouse.Clase8.model.FacturaDto;
 import com.coderhouse.Clase8.service.FacturaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class FacturaControler {
     @GetMapping(path = "{id_factura}")
     public ResponseEntity<Object>obtengoFacturaPorId(@PathVariable int id_factura){
         try {
-            Factura dato = facturaServcio.obtengoFacturaPorId(id_factura);
+            FacturaConDetalleDto dato = facturaServcio.obtengoFacturaPorId(id_factura);
             return ResponseHandler.generateResponse(
                     "Obtención de Factutra por Id Exitosa",
                     HttpStatus.OK,
@@ -63,7 +64,7 @@ public class FacturaControler {
     @GetMapping(path = "/obtengoFacturaPorClinteId/{id_cliente}")
     public ResponseEntity<Object> obtengoFacturaPorIdCliente(@PathVariable int id_cliente) {
         try {
-            List<FacturaDto> dato = facturaServcio.getid_cliente);
+            List<FacturaDto> dato = facturaServcio.obtengoFacturaPorClienteId(id_cliente);
             return ResponseHandler.generateResponse(
                     "Obtención de Factutra por Id de Cliente  Exitosa",
                     HttpStatus.OK,

@@ -16,7 +16,7 @@ public class Cliente {
  private String apellido;
  @Column(nullable = false,unique = true)
  private Integer documento;
- @OneToMany (mappedBy ="cliente",fetch = FetchType.EAGER)
+ @OneToMany (mappedBy ="cliente",cascade = CascadeType.ALL)
  private List<Factura> facturas;
 
     // Agrego getter & Setters

@@ -3,11 +3,10 @@ package com.coderhouse.Clase8.model;
 import jakarta.persistence.*;
 
 import java.util.*;
-import java.util.Objects;
 
 @Entity
 @Table(name="producto")
-public class Producto implements List<Producto> {
+public abstract class Producto implements List<Producto> {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private int id_producto;

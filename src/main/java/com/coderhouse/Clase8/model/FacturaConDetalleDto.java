@@ -2,22 +2,18 @@ package com.coderhouse.Clase8.model;
 
 import java.util.List;
 
-public class FacturaDto {
+public class FacturaConDetalleDto {
     private int factura_id;
     private String creada_el;
     private double total;
-    private List<DetalleFactura>detalleFacturas;
-//Agrego un constructor
+    private List<DetalleFacturaDto> detalles;
 
-    public FacturaDto(int factura_id, String creada_el, double total) {
+    public FacturaConDetalleDto(int factura_id, String creada_el, double total, List<DetalleFacturaDto> detalles) {
         this.factura_id = factura_id;
         this.creada_el = creada_el;
         this.total = total;
-        this.detalleFacturas = detalleFacturas;
-    }
-
-
-    //Agrego Getter & Setters
+        this.detalles = detalles;
+         }
 
     public int getFactura_id() {
         return factura_id;
@@ -43,23 +39,21 @@ public class FacturaDto {
         this.total = total;
     }
 
-    public List<DetalleFactura> getDetalleFacturas() {
-        return detalleFacturas;
+    public List<DetalleFacturaDto> getDetalles() {
+        return detalles;
     }
 
-    public void setDetalleFacturas(List<DetalleFactura> detalleFacturas) {
-        this.detalleFacturas = detalleFacturas;
+    public void setDetalles(List<DetalleFacturaDto> detalles) {
+        this.detalles = detalles;
     }
 
-
-    //Agrego To String
     @Override
     public String toString() {
-        return "FacturaDto{" +
+        return "FacturaConDetalleDto{" +
                 "factura_id=" + factura_id +
                 ", creada_el='" + creada_el + '\'' +
                 ", total=" + total +
-                ", detalleFacturas=" + detalleFacturas +
+                ", detalles=" + detalles +
                 '}';
     }
 }

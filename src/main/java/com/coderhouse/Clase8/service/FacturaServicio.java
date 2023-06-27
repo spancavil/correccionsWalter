@@ -1,6 +1,7 @@
 package com.coderhouse.Clase8.service;
 
 import com.coderhouse.Clase8.model.*;
+import com.coderhouse.Clase8.repository.ClienteRepository;
 import com.coderhouse.Clase8.repository.FacturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,54 +12,72 @@ import java.util.Optional;
 @Service
 public class FacturaServicio {
     @Autowired
+    private FacturaRepository facturaRepository;
+    @Autowired
+    ClienteRepository clienteRepository;
+    @Autowired
     private ProductoServicio productoServicio;
     @Autowired
     private FacturaDetalleServicio facturaDetalleServicio;
     @Autowired
     private ClienteServicio clienteServicio;
+   // private List<DetalleFactura> detalleFacturas;
 
     public FacturaDto postFactura(ConsultaFactura consultaFactura) throws Exception {
         //Busco al cliente atravez de si ID
         Cliente clinteExiste = clienteServicio.getCliente(consultaFactura.cliente_id);
         //Buscamos los productos
-        List<Producto> productoList = productoServicio.getProductobyid(consultaFactura.lista_producto);
-
-    };
-
-
-
-        //Creo un objeto Factura
-        // Factura facturaCreada=new Factura();
-        //Seteo fecha de la Factura
-        // facturaCreada.setFecha (new Date().toString());
-        //Se imprime el Id de Cliente
-        //System.out.println(consultaFactura.getCliente_id());
-        //Busco al Cliente por su Id
-        //Optional<Cliente>clienteExiste=clienteRepository.findById(consultaFactura.getCliente_id());
-        //System.out.println(clienteExiste.isEmpty());
-        //if(clienteExiste.isEmpty()){
-        //  throw new Exception("Cliente no encontrado...");
-        //}
-        //Si llego aca, el cliente existe, entonces se guarda en la Factura
-        // facturaCreada.setCliente(clienteExiste.get());
-        //Conectamos con el Repository para guardar las variables seteadas
-        //  facturaCreada=facturaRepository.save(facturaCreada);
-        //Retornamos el DTO
-        // return new FacturaDto(
-        //        facturaCreada.getId_factura(),
-        //       facturaCreada.getFecha(),
-        //        facturaCreada.getTotal()
-        // );
-        //}
-         public List<FacturaDto>obtengoFacturaPorIdCliente(int id_cliente) throws Exception{
-             System.out.println(id_cliente);
-            return FacturaRepository.obtengoFacturaPorIdCliente (id_cliente);
+        List<Producto> productoList = productoServicio.getProductoById(consultaFactura.lista_producto);
+       // Calculo del TOTAL
+        double total = 0;
+        int i = 0;
+        for(Producto producto:productoList){
+            total +=producto.getPrecio_producto() * consultaFactura.getLista_producto().get(i).getCantidad();
+        i ++;
         }
-        public Factura obtengoFacturaPorId (int id_factura) throws Exception {
+        //Instanciamos un Objeto Factura
+        Factura facturaCreada =new Factura();
+        //Seteamos la fecha de la factura
+        facturaCreada.setFecha(new Date().toString());
+        //Seteamos al cliente dentro de la Factura
+        facturaCreada.setCliente(clinteExiste);
+        facturaCreada.setTotal((float) total);
+        //Guardamos la Factura antes de guardar el Detalle
+        facturaCreada=FacturaRepository.save(facturaCreada);
+        // Seteamos Cada Detalle y los guardamos
+        i=0;
+        for (Producto forDetalleProducto:productoList){
+            DetalleFactura nuevaFactura = new DetalleFactura();
+            nuevaFactura.setPrecio_detalle(forDetalleProducto.getPrecio_producto());
+            nuevaFactura.setFactura(facturaCreada);
+            nuevaFactura.setProducto(forDetalleProducto);
+            nuevaFactura.setCantidad(consultaFactura.getLista_producto().get(i).getCantidad();
+            FacturaDetalleServicio.guardoDetalleFactura(nuevaFactura);
+            i ++;
+            // Retorno DTO
+            return new FacturaDto(
+                    facturaCreada.getId_factura(),
+                    facturaCreada.getFecha(),
+                    facturaCreada.getTotal()
+            );
+        }
+
+           public List<FacturaDto> obtengoFacturaPorIdCliente (int id_cliente) throws Exception{
+             System.out.println(id_cliente);
+            return  FacturaRepository.obtengoFacturaPorIdCliente (id_cliente);
+        }
+        public FacturaConDetalleDto obtegoFacturaPorId  (int id_factura) throws Exception {
         Optional<Factura> facturaEncontrada=FacturaRepository.findById(id_factura);
         if (facturaEncontrada.isEmpty()) {
             throw new Exception("Factura no encontrada");
         }
-        return facturaEncontrada.get();
+       List<DetalleFacturaDto> detalles_factura =facturaDetalleServicio.getDetalleFacturaByFacturaId(id_factura);
+        return new FacturaConDetalleDto(
+                facturaEncontrada.get().getId_factura(),
+                facturaEncontrada.get().getFecha(),
+                facturaEncontrada.get().getTotal(),
+                detalles_factura
+        );
         }
     }
+}
