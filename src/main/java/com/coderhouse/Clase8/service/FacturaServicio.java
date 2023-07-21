@@ -43,17 +43,18 @@ public class FacturaServicio {
         facturaCreada.setCliente(clinteExiste);
         facturaCreada.setTotal((float) total);
         //Guardamos la Factura antes de guardar el Detalle
-        facturaCreada=FacturaRepository.save(facturaCreada);
+        facturaCreada=facturaRepository.save(facturaCreada);
         // Seteamos Cada Detalle y los guardamos
         i=0;
-        for (Producto forDetalleProducto:productoList){
+        for (Producto forDetalleProducto:productoList) {
             DetalleFactura nuevaFactura = new DetalleFactura();
             nuevaFactura.setPrecio_detalle(forDetalleProducto.getPrecio_producto());
             nuevaFactura.setFactura(facturaCreada);
             nuevaFactura.setProducto(forDetalleProducto);
-            nuevaFactura.setCantidad(consultaFactura.getLista_producto().get(i).getCantidad();
+            nuevaFactura.setCantidad(consultaFactura.getLista_producto().get(i).getCantidad());
             FacturaDetalleServicio.guardoDetalleFactura(nuevaFactura);
-            i ++;
+            i++;
+        }
             // Retorno DTO
             return new FacturaDto(
                     facturaCreada.getId_factura(),
@@ -61,23 +62,21 @@ public class FacturaServicio {
                     facturaCreada.getTotal()
             );
         }
-
-           public List<FacturaDto> obtengoFacturaPorIdCliente (int id_cliente) throws Exception{
-             System.out.println(id_cliente);
-            return  FacturaRepository.obtengoFacturaPorIdCliente (id_cliente);
+        public List<FacturaDto> obtengoFacturaPorIdCliente (int id_cliente) throws Exception{
+            System.out.println(id_cliente);
+            return  facturaRepository.obtengoFacturaPorIdCliente(id_cliente);
         }
         public FacturaConDetalleDto obtegoFacturaPorId  (int id_factura) throws Exception {
-        Optional<Factura> facturaEncontrada=FacturaRepository.findById(id_factura);
+        Optional<Factura> facturaEncontrada= facturaRepository.findById(id_factura);
         if (facturaEncontrada.isEmpty()) {
             throw new Exception("Factura no encontrada");
         }
        List<DetalleFacturaDto> detalles_factura =facturaDetalleServicio.getDetalleFacturaByFacturaId(id_factura);
-        return new FacturaConDetalleDto(
+            return new FacturaConDetalleDto(
                 facturaEncontrada.get().getId_factura(),
                 facturaEncontrada.get().getFecha(),
                 facturaEncontrada.get().getTotal(),
                 detalles_factura
         );
-        }
     }
 }

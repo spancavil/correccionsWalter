@@ -37,7 +37,7 @@ public class ClienteController {
     }
 
     //Solicito un  Cliente por Id
-    @GetMapping(path = {"id"})
+    @GetMapping(path = "{id}")
     public ResponseEntity<Object> getCliente(@PathVariable() int id) {
         try {
             System.out.println(id);

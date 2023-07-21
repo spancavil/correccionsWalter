@@ -44,7 +44,7 @@ public class FacturaControler {
     @GetMapping(path = "{id_factura}")
     public ResponseEntity<Object>obtengoFacturaPorId(@PathVariable int id_factura){
         try {
-            FacturaConDetalleDto dato = facturaServcio.obtengoFacturaPorId(id_factura);
+            FacturaConDetalleDto dato = facturaServcio.obtegoFacturaPorId(id_factura);
             return ResponseHandler.generateResponse(
                     "Obtención de Factutra por Id Exitosa",
                     HttpStatus.OK,
@@ -64,7 +64,7 @@ public class FacturaControler {
     @GetMapping(path = "/obtengoFacturaPorClinteId/{id_cliente}")
     public ResponseEntity<Object> obtengoFacturaPorIdCliente(@PathVariable int id_cliente) {
         try {
-            List<FacturaDto> dato = facturaServcio.obtengoFacturaPorClienteId(id_cliente);
+            List<FacturaDto> dato = facturaServcio.obtengoFacturaPorIdCliente(id_cliente);
             return ResponseHandler.generateResponse(
                     "Obtención de Factutra por Id de Cliente  Exitosa",
                     HttpStatus.OK,

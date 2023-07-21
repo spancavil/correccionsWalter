@@ -16,13 +16,9 @@ public class Factura {
     //@JoinColumn(name ="id_cliente")
     private Cliente cliente;
     @OneToMany(mappedBy = "factura")
-    private List<DetalleFactura>detalleFacturas;
+    private List<DetalleFactura> detalleFactura;
     private double total;
     private String fecha;
-
-    public Factura(List<DetalleFactura> detalleFacturas) {
-        this.detalleFacturas = detalleFacturas;
-    }
 
     //Agrego Getters y Setters
 
@@ -67,7 +63,7 @@ public class Factura {
         return "Factura{" +
                 "id_factura=" + id_factura +
                 ", cliente=" + cliente +
-                ", detalleFacturas=" + detalleFacturas +
+                ", detalleFactura=" + detalleFactura +
                 ", total=" + total +
                 ", fecha='" + fecha + '\'' +
                 '}';
@@ -83,7 +79,7 @@ public class Factura {
         if (id_factura != factura.id_factura) return false;
         if (Double.compare(factura.total, total) != 0) return false;
         if (!Objects.equals(cliente, factura.cliente)) return false;
-        if (!Objects.equals(detalleFacturas, factura.detalleFacturas))
+        if (!Objects.equals(detalleFactura, factura.detalleFactura))
             return false;
         return Objects.equals(fecha, factura.fecha);
     }
@@ -94,7 +90,7 @@ public class Factura {
         long temp;
         result = id_factura;
         result = 31 * result + (cliente != null ? cliente.hashCode() : 0);
-        result = 31 * result + (detalleFacturas != null ? detalleFacturas.hashCode() : 0);
+        result = 31 * result + (detalleFactura != null ? detalleFactura.hashCode() : 0);
         temp = Double.doubleToLongBits(total);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (fecha != null ? fecha.hashCode() : 0);

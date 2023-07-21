@@ -24,7 +24,7 @@ public class ProductoServicio {
         List<Producto> listaProducto = new ArrayList<>();
         for (ConsultaProductoDetalle consultoproducto :
                 productoListId) {
-            Optional<Producto> productoEncontrado = ProductoRepository.findById(consultoproducto.getProductoId());
+            Optional<Producto> productoEncontrado = productoRepository.findById(consultoproducto.getProductoId());
             if (productoEncontrado.isEmpty()) {
                 throw new Exception("Producto con Id" + consultoproducto.getProductoId() + "NO ENCONTRADO");
             }

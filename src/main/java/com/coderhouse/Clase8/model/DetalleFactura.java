@@ -15,7 +15,7 @@ public class DetalleFactura {
     @JoinColumn(name="id_producto")
     private Producto producto;
       private int cantidad;
-    private double precio_detalle;
+    private double precio;
     //Agrego getter & Setters
 
     public int getId_detalle() {
@@ -51,11 +51,11 @@ public class DetalleFactura {
     }
 
     public double getPrecio_detalle() {
-        return precio_detalle;
+        return precio;
     }
 
     public void setPrecio_detalle(double precio_detalle) {
-        this.precio_detalle = precio_detalle;
+        this.precio = precio_detalle;
     }
 
 
@@ -68,7 +68,7 @@ public class DetalleFactura {
                 ", factura=" + factura +
                 ", producto=" + producto +
                 ", cantidad=" + cantidad +
-                ", precio_detalle=" + precio_detalle +
+                ", precio_detalle=" + precio +
                 '}';
     }
 }

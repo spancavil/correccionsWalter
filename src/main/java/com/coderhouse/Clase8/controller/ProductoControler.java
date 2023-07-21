@@ -1,7 +1,6 @@
 package com.coderhouse.Clase8.controller;
 
 import com.coderhouse.Clase8.middleware.ResponseHandler;
-import com.coderhouse.Clase8.model.Cliente;
 import com.coderhouse.Clase8.model.Producto;
 import com.coderhouse.Clase8.service.ProductoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +15,11 @@ import java.util.List;
 @RequestMapping(path="api/v1/producto")
 
 public class ProductoControler {
-@Autowired
-private ProductoServicio productoServicio;
+    @Autowired
+    private ProductoServicio productoServicio;
 
-@PostMapping
-public ResponseEntity<Object> postProducto(@RequestBody Producto producto) {
+    @PostMapping
+    public ResponseEntity<Object> postProducto(@RequestBody Producto producto) {
         try {
             System.out.println(producto);
             //LLamo al Servicio para guardar mi producto
